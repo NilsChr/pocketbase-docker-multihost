@@ -4,3 +4,4 @@ output_
 test_files
 output
 .env.**
+package-lock.json
