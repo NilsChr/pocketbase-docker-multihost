@@ -1,3 +1,6 @@
 node_modules
 output_target
 output_
+test_files
+output
+.env.**
