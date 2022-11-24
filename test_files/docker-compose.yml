@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  pocketbase:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pocketbase-apps
+    restart: unless-stopped
+    ports:
+      - "8090:8090"
+      - "8091:8091"
+    volumes:
+      - /Users/nils/VolumesDocker/app1:/app1/pb_data
+      - /Users/nils/VolumesDocker/app2:/app2/pb_data
+
