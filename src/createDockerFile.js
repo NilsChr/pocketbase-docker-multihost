@@ -20,7 +20,7 @@ function createDockerfile(apps) {
   out += "RUN apk update && apk add nginx\n";
   out += "RUN apk update && apk add bash\n";
   out += "\n";
-  out += "COPY script.bash .\n";
+  // out += "COPY script.bash .\n";
   out += "COPY ./nginx.conf /etc/nginx/nginx.conf\n";
 
   out += "COPY ./index.html /var/www/\n";
@@ -38,10 +38,10 @@ function createDockerfile(apps) {
   }
   out += "\n";
   out += 'RUN ["chmod", "+x", "/apps/startScript.sh"]\n';
-  out += 'RUN ["chmod", "+x", "/script.bash"]\n';
+  // out += 'RUN ["chmod", "+x", "/script.bash"]\n';
   out += "\n";
-  out +=
-    'CMD ["/bin/bash", "-c", "./script.bash; nginx;/apps/startScript.sh"]\n';
+  //out += 'CMD ["/bin/bash", "-c", "./script.bash; nginx;/apps/startScript.sh"]\n';
+  out += 'CMD ["/bin/bash", "-c", "nginx;/apps/startScript.sh"]\n';
 
   return out;
 }

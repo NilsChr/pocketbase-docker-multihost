@@ -19,19 +19,22 @@ function main() {
       port: port++,
     });
   });
-
+  
   fs.writeFileSync("./output/index.html", createHTML(apps), {
     encoding: "utf8",
     flag: "w",
   });
+  
   fs.writeFileSync("./output/startScript.sh", createScriptPocketBase(apps), {
     encoding: "utf8",
     flag: "w",
   });
+  /*
   fs.writeFileSync("./output/script.bash", createScriptNGINX(apps), {
     encoding: "utf8",
     flag: "w",
   });
+  */
   fs.writeFileSync("./output/Dockerfile", createDockerfile(apps), {
     encoding: "utf8",
     flag: "w",
