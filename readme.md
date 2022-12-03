@@ -1,7 +1,7 @@
 # ![PocketBase](https://pocketbase.io/images/logo.svg) Pocket**Base** *Docker Multihost*
 
 ## About
-Generates setup files for hosting multiple instances of pocketbase in the same docker container. Useful if yu have several small applications and don't want to pay too much.
+Generates setup files for hosting multiple instances of pocketbase in the same docker container. Useful if you have several small applications and don't want to pay less for hosting all of them.
 
 ```
 ├── output

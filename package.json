@@ -8,6 +8,7 @@
     "generate:dev": "export NODE_ENV=development && node index.js",
     "start": "export NODE_ENV=production && node index.js && cd output && docker compose down && docker compose build && docker compose up",
     "start:dev": "export NODE_ENV=development && node index.js && cd output && docker compose down && docker compose build && docker compose up",
+    "docker": "cd output && docker compose down && docker compose build && docker compose up",
     "dev": "export NODE_ENV=development && node index.js"
   },
   "keywords": [],
