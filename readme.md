@@ -13,7 +13,16 @@ Generates setup files for hosting multiple instances of pocketbase in the same d
 ```
 
 ## Getting started
-
+Create the .env file and add the variables needed. 
+```
+    npm run generate - Will generate the files to the output folder with NODE_ENV set to production
+    npm run generate:dev - Same as above with NODE_ENV set to development
+```
+```
+    Generates the files as well as running docker compose down && docker compose build && docker compose up
+    npm run start
+    npm run start:dev
+```
 
 ## **Environment Variables**
 Create .env file in the root directory of the project.  
