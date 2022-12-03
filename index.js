@@ -6,7 +6,7 @@ const createNGINXConfig = require("./src/createNGINXConfig");
 const createHTML = require("./src/createHTML");
 const createScriptPocketBase = require("./src/createScriptPocketBase");
 
-const appnames = ["app1", "app2", "app3", "fightnight"];
+const appnames = process.env.APPS.split(",")//["app1"]//["app1", "app2", "app3", "fightnight"];
 
 function main() {
   let port = 8090;

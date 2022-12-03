@@ -7,6 +7,14 @@ function createDockerCompose(apps) {
     version: "3.7",
     services: {
       pocketbase: {
+        deploy: {
+          resources: {
+            limits: {
+              cpus: process.env.CPUS || '4.0', // '0.5'
+              memory: process.env.MEMORY || '2g' // '512M'
+            }
+          }
+        },
         build: {
           context: ".",
           dockerfile: "Dockerfile",
