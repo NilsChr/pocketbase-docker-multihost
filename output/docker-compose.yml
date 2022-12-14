@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  pocketbase:
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 64m
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pocketbase-apps
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 8080:8080
+      - 8090:8090
+      - 8091:8091
+    volumes:
+      - /Users/nils/VolumesDocker/app1:/app1/pb_data
+      - /Users/nils/VolumesDocker/app2:/app2/pb_data
