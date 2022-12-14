@@ -19,13 +19,11 @@ RUN apk update && apk add bash
 COPY ./nginx.conf /etc/nginx/nginx.conf
 COPY ./index.html /var/www/
 COPY --from=downloader /pocketbase /apps/app1 
-COPY --from=downloader /pocketbase /apps/app2 
 COPY startScript.sh /apps/startScript.sh
 
 EXPOSE 80
 EXPOSE 8080
 EXPOSE 8090
-EXPOSE 8091
 
 RUN ["chmod", "+x", "/apps/startScript.sh"]
 

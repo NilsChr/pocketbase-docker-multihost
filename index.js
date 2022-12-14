@@ -18,6 +18,8 @@ function main() {
     });
   });
 
+  
+
   createFile("./output/index.html", createHTML(apps));
   createFile("./output/startScript.sh", createScriptPocketBase(apps));
   createFile("./output/Dockerfile", createDockerfile(apps));
