@@ -4,7 +4,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "1.0"
+          cpus: "4.0"
           memory: 2g
     build:
       context: .
@@ -15,5 +15,7 @@ services:
       - 80:80
       - 8080:8080
       - 8090:8090
+      - 8091:8091
     volumes:
-      - //app1:/app1/pb_data
+      - /Users/nils/VolumesDocker/test1:/test1/pb_data
+      - /Users/nils/VolumesDocker/test2:/test2/pb_data

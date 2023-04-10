@@ -7,8 +7,8 @@ ARG VERSION
 
 ENV BUILDX_ARCH="${TARGETOS:-linux}_${TARGETARCH:-amd64}${TARGETVARIANT}"
 
-RUN wget https://github.com/pocketbase/pocketbase/releases/download/v0.8.0/pocketbase_0.8.0_linux_amd64.zip \
-&& unzip pocketbase_0.8.0_linux_amd64.zip \
+RUN wget https://github.com/pocketbase/pocketbase/releases/download/v0.8.0/pocketbase_0.8.0_linux_amd64.zip -O pb.zip \
+&& unzip  pb.zip \
 && chmod +x /pocketbase
 
 FROM alpine:3
@@ -18,12 +18,14 @@ RUN apk update && apk add bash
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
 COPY ./index.html /var/www/
-COPY --from=downloader /pocketbase /apps/app1 
+COPY --from=downloader /pocketbase /apps/test1 
+COPY --from=downloader /pocketbase /apps/test2 
 COPY startScript.sh /apps/startScript.sh
 
 EXPOSE 80
 EXPOSE 8080
 EXPOSE 8090
+EXPOSE 8091
 
 RUN ["chmod", "+x", "/apps/startScript.sh"]
 
