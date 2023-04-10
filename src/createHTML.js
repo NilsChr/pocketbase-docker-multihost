@@ -1,9 +1,9 @@
-const fs = require('fs');
+const fs = require("fs");
 
-function createHTML(apps) {
+function createHTML(config) {
   let links = "";
-  for (let app of apps) {
-    links += `<div class='app'><label>${app.title}</label><a href="/${app.title}"><img src='https://cdn-icons-png.flaticon.com/128/2985/2985179.png'/></a></div><br/>\n\t\t\t`;
+  for (let app of config.apps) {
+    links += `<div class='app'><label>${app.title}</label><a href="/${app.title}/_/"><img src='https://cdn-icons-png.flaticon.com/128/2985/2985179.png'/></a></div><br/>\n\t\t\t`;
   }
 
   let out = `<!DOCTYPE html>

@@ -1,9 +1,10 @@
-function createNGINXConfig(apps) {
+function createNGINXConfig(config) {
   let redirects = "";
-  for (let app of apps) {
+  for (let app of config.apps) {
     redirects += `
         location /${app.title} {
-            return 301 $scheme://$host:${app.port}/_/;
+            rewrite ^/${app.title}/(.*) /$1  break;
+            proxy_pass http://0.0.0.0:${app.port}/;
         }`;
   }
   let out = `events {

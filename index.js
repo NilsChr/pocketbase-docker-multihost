@@ -6,25 +6,28 @@ const createNGINXConfig = require("./src/createNGINXConfig");
 const createHTML = require("./src/createHTML");
 const createScriptPocketBase = require("./src/createScriptPocketBase");
 
-const appnames = process.env.APPS.split(",")
+const config = require('./config');
+console.log(config);
+
+//const appnames = process.env.APPS.split(",")
 
 function main() {
   let port = 8090;
   const apps = [];
-  appnames.forEach((name) => {
+ // appnames.forEach((name) => {
+  config.apps.forEach((name) => {
     apps.push({
       title: name,
       port: port++,
     });
   });
+  config.apps = apps;
 
-  
-
-  createFile("./output/index.html", createHTML(apps));
-  createFile("./output/startScript.sh", createScriptPocketBase(apps));
-  createFile("./output/Dockerfile", createDockerfile(apps));
-  createFile("./output/docker-compose.yml", createDockerCompose(apps));
-  createFile("./output/nginx.conf", createNGINXConfig(apps));
+  createFile("./output/index.html", createHTML(config));
+  createFile("./output/startScript.sh", createScriptPocketBase(config));
+  createFile("./output/Dockerfile", createDockerfile(config));
+  createFile("./output/docker-compose.yml", createDockerCompose(config));
+  createFile("./output/nginx.conf", createNGINXConfig(config));
 }
 
 main();

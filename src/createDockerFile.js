@@ -1,4 +1,4 @@
-function createDockerfile(apps) {
+function createDockerfile(config) {
   let out = "FROM alpine:3 as downloader\n";
   out += "\n";
   out += "ARG TARGETOS\n";
@@ -9,9 +9,12 @@ function createDockerfile(apps) {
   out +=
     'ENV BUILDX_ARCH="${TARGETOS:-linux}_${TARGETARCH:-amd64}${TARGETVARIANT}"\n';
   out += "\n";
-  out +=
-    "RUN wget https://github.com/pocketbase/pocketbase/releases/download/v0.8.0/pocketbase_0.8.0_linux_amd64.zip \\\n";
-  out += "&& unzip pocketbase_0.8.0_linux_amd64.zip \\\n";
+  out += `RUN wget ${config.pocketBaseUrl} -O pb.zip \\\n`;
+  //  "RUN wget https://github.com/pocketbase/pocketbase/releases/download/v0.8.0/pocketbase_0.8.0_linux_amd64.zip \\\n";
+  //out += `&& unzip ${config.pocketBaseUrl.split('/')} \\\n`;
+  out += `&& unzip  pb.zip \\\n`;
+
+  //out += "&& unzip pocketbase_0.8.0_linux_amd64.zip \\\n";
   out += "&& chmod +x /pocketbase\n";
   out += "\n";
   out += "FROM alpine:3\n";
@@ -24,7 +27,7 @@ function createDockerfile(apps) {
   out += "COPY ./nginx.conf /etc/nginx/nginx.conf\n";
 
   out += "COPY ./index.html /var/www/\n";
-  for (let app of apps) {
+  for (let app of config.apps) {
     out += `COPY --from=downloader /pocketbase /apps/${app.title} \n`;
   }
   out += "COPY startScript.sh /apps/startScript.sh\n";
@@ -33,7 +36,7 @@ function createDockerfile(apps) {
   out += "EXPOSE 80\n";
   out += "EXPOSE 8080\n";
 
-  for (let app of apps) {
+  for (let app of config.apps) {
     out += `EXPOSE ${app.port}\n`;
   }
   out += "\n";
